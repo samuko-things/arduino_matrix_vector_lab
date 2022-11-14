@@ -1,0 +1,49 @@
+#######################################
+# Syntax Coloring Map matrixlab
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+MatVectLab	KEYWORD1
+matOp	KEYWORD1
+vectOp	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+print	KEYWORD2
+print3D KEYWORD2
+print2D	KEYWORD2
+copy	KEYWORD2
+clear	KEYWORD2
+round	KEYWORD2
+
+add	KEYWORD2
+subtract	KEYWORD2
+multiply	KEYWORD2
+scale	KEYWORD2
+scaleDiv	KEYWORD2
+dot	KEYWORD2
+
+cross	KEYWORD2
+magnitude	KEYWORD2
+normalize	KEYWORD2
+directionCosinesRad	KEYWORD2
+directionCosinesDeg	KEYWORD2
+angleBtwRad	KEYWORD2
+angleBtwDeg	KEYWORD2
+
+transpose	KEYWORD2
+det	KEYWORD2
+inverse	KEYWORD2
+
+vect2mat_C	KEYWORD2
+vect2mat_R	KEYWORD2
+mat2vect	KEYWORD2
+
+
+#######################################
+# Constants (LITERAL1)
+#######################################

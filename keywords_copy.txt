@@ -1,0 +1,40 @@
+#######################################
+# Syntax Coloring Map matrixlab
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+matrixlab	KEYWORD1
+
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+add	KEYWORD2
+sub	KEYWORD2
+transpose	KEYWORD2
+prod	KEYWORD2
+scale	KEYWORD2
+eProd	KEYWORD2
+det	KEYWORD2
+inverse	KEYWORD2
+printMatrix	KEYWORD2
+copy	KEYWORD2
+clear	KEYWORD2
+
+dot	KEYWORD2
+cross	KEYWORD2
+mag	KEYWORD2
+DCM	KEYWORD2
+DCM_deg	KEYWORD2
+DCM_rad	KEYWORD2
+vectorAngle_deg	KEYWORD2
+vectorAngle_rad	KEYWORD2
+printVector	KEYWORD2
+
+
+#######################################
+# Constants (LITERAL1)
+#######################################
