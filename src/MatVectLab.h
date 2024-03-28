@@ -172,9 +172,10 @@ public:
 
     // this function performs dot product on two vector
     template <typename dtype, typename dtype1, typename dtype2, SIZE N>
-    dtype dot(dtype1 (&vector1)[N], dtype2 (&vector2)[N])
+    double dot(dtype1 (&vector1)[N], dtype2 (&vector2)[N])
     {
-        double dot_prod;
+        
+        double dot_prod = 0.0;
         for (int c = 0; c < N; c += 1)
         {
             dot_prod += (double)vector1[c] * (double)vector2[c];
@@ -187,7 +188,7 @@ public:
     void transform(dtype (&result_vector)[N], dtype1 (&transformationMatrix)[N][N], dtype2 (&vector)[N])
     {
         double buffer[N];
-        double val;
+        double val = 0.0;
 
         for (SIZE row = 0; row < N; row += 1)
         {
@@ -198,7 +199,7 @@ public:
                     val += (double)transformationMatrix[row][count] * (double)vector[count];
                 }
                 buffer[row] = val;
-                val = 0;
+                val = 0.0;
             }
         }
 
@@ -237,7 +238,7 @@ public:
     template <typename dtype, typename dtype1, SIZE N>
     dtype magnitude(dtype1 (&vector1)[N])
     {
-        double mag;
+        double mag = 0.0;
         for (int c = 0; c < N; c += 1)
         {
             mag += pow((double)vector1[c], 2.0);
@@ -254,10 +255,7 @@ public:
         double buffer[N];
         double mag = magnitude<double>(vector1);
 
-        for (int c = 0; c < N; c += 1)
-        {
-            buffer[N] = (double)vector1[N] / mag;
-        }
+        scaleDiv(buffer, vector1, mag);
 
         clear(result);
         copy(result, buffer);
@@ -265,31 +263,32 @@ public:
 
     // this function calculates the cosine of angle between two 3Dvectors
     template <typename dtype, typename dtype1, typename dtype2>
-    dtype cosineOfAngleBtw(dtype1 (&vector1)[3], dtype2 (&vector2)[3])
+    double cosineOfAngleBtw(dtype1 (&vector1)[3], dtype2 (&vector2)[3])
     {
-        double unit_vector1[3], unit_vector2[3];
+        double dot_vect12, mag_vect1, mag_vect2;
 
-        normalize(unit_vector1, vector1);
-        normalize(unit_vector2, vector2);
+        dot_vect12 = dot<double>(vector1, vector2);
+        mag_vect1 = magnitude<double>(vector1);
+        mag_vect2 = magnitude<double>(vector2);
 
-        double cosine_of_angle = dot<double>(unit_vector1, unit_vector2);
-        return (dtype)cosine_of_angle;
+        double cosine_of_angle = dot_vect12/(mag_vect1*mag_vect2);
+        return cosine_of_angle;
     }
 
     // this function calculates the angle between two 3Dvectors
     template <typename dtype, typename dtype1, typename dtype2>
-    dtype angleBtwRad(dtype1 (&vector1)[3], dtype2 (&vector2)[3])
+    double angleBtwRad(dtype1 (&vector1)[3], dtype2 (&vector2)[3])
     {
         double angle = acos(cosineOfAngleBtw<double>(vector1, vector2));
-        return (dtype)angle;
+        return angle;
     }
 
     // this function calculates the angle between two 3Dvectors
     template <typename dtype, typename dtype1, typename dtype2>
-    dtype angleBtwDeg(dtype1 (&vector1)[3], dtype2 (&vector2)[3])
+    double angleBtwDeg(dtype1 (&vector1)[3], dtype2 (&vector2)[3])
     {
         double angle = acos(cosineOfAngleBtw<double>(vector1, vector2)) * 180/M_PI;
-        return (dtype)angle;
+        return angle;
     }
 
     // this function rounds a vector to the nearest decimal place
@@ -483,7 +482,7 @@ public:
     void dot(dtype (&result)[R][C], dtype1 (&matrix1)[R][N], dtype2 (&matrix2)[N][C])
     {
         double buffer[R][C];
-        double val;
+        double val=0.0;
         dtype2 T_matrix2[C][N];
         transpose(T_matrix2, matrix2); // transpose matrix2 and store ans in T_matrix2
 
@@ -496,7 +495,7 @@ public:
                     val += (double)matrix1[row][count] * (double)T_matrix2[col][count];
                 }
                 buffer[row][col] = val;
-                val = 0;
+                val = 0.0;
             }
         }
 
@@ -592,7 +591,7 @@ private:
     template <typename dtype, SIZE N>
     double det(dtype (&matrix)[N][N])
     {
-        double d = 0;
+        double d = 0.0;
         double minor_matrix[N - 1][N - 1];
 
         for (SIZE c = 0; c < N; c += 1)
